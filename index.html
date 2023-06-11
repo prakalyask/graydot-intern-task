@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="cont">
+        <h1 align="center">Use desktop only</h1>
+        <br>
+        <div class="section">
+            <div id="left">
+                <h3 align="center">UNDRAGGED</h3>
+                <div class="list" draggable="true"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">ITEM 1</div>
+                <div class="list" draggable="true"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">ITEM 2</div>
+                <div class="list" draggable="true"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">ITEM 3</div>
+                <div class="list" draggable="true"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">ITEM 4</div>
+
+            </div>
+            <div id="right">
+                <h3 align="center">DRAGGED</h3>
+            </div>
+            <br>
+            <button align="center" onclick="refreshPage()">Start Again</button>
+
+        </div>
+    </div>
+    <footer>
+        <h2 align="center">Prakalya Sk</h2>
+        <p align="center">
+            <a href="https://github.com/prakalyask" target="blank"><img align="center"
+                    src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg"
+                    alt="prakalyask" height="30" width="40" /></a>
+            <a href="https://www.linkedin.com/in/prakalyask/" target="blank"><img align="center"
+                    src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
+                    alt="prakalyask" height="30" width="40" /></a>
+        </p>
+        <br>
+        <br>
+    </footer>
+</body>
+
+<script>
+
+    let lists = document.getElementsByClassName("list");
+    let rightBox = document.getElementById("right");
+    let leftBox = document.getElementById("left");
+    for (list of lists) {
+        list.addEventListener("dragstart", function (e) {
+            let selected = e.target;
+            rightBox.addEventListener("dragover", function (e) {
+                e.preventDefault();
+            })
+            rightBox.addEventListener("drop", function (e) {
+                rightBox.appendChild(selected);
+                selected = null;
+            })
+            leftBox.addEventListener("dragover", function (e) {
+                e.preventDefault();
+            })
+            leftBox.addEventListener("drop", function (e) {
+                leftBox.appendChild(selected);
+                selected = null;
+            })
+        })
+    }
+    function refreshPage() {
+        location.reload();
+    }
+    window.onload = function () {
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.getElementsByClassName("container")[0].style.display = "none";
+            document.getElementById("error-message").style.display = "block";
+        }
+    };
+
+
+</script>
+
+</html>
